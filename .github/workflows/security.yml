@@ -27,4 +27,4 @@ jobs:
 
       - name: Run Python Vulnerability Scanner
         run: python3 scripts/vuln_scan.py
-fix: add terraform installer to CI
+
