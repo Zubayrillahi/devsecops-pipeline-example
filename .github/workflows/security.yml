@@ -11,11 +11,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.7
+
       - name: Run Terraform Format Check
         run: terraform fmt -check -recursive
 
+      - name: Make Bash Script Executable
+        run: chmod +x scripts/harden.sh
+
       - name: Run Bash Hardening Script (dry)
-        run: bash scripts/harden.sh || true
+        run: ./scripts/harden.sh || true
 
       - name: Run Python Vulnerability Scanner
         run: python3 scripts/vuln_scan.py
+fix: add terraform installer to CI
